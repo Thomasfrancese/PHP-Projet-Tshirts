@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Logo;
 use App\Tshirt;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManager;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,22 @@ class CreateImageController extends Controller
      */
     public function create()
     {
+        $manager = new ImageManager();
+        $img = $manager->make($_FILES['input_img']['tmp_name']);
 
+        $data = [
+            'nom' => 'upload',
+            'largeur' => $img->width(),
+            'hauteur' => $img->height(),
+        ];
+
+        $logo = Logo::create($data);
+
+        $pathSave = public_path('images/logo/' . $logo->id . '.png');
+
+        $img->save($pathSave);
+
+        return redirect('tshirts');
         //
     }
 

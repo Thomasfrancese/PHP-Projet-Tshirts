@@ -49,17 +49,17 @@
     </form>
 
 
-    {{--<form enctype="multipart/form-data" method="post" action="#">--}}
-    {{--{{ csrf_field() }}--}}
+    <form enctype="multipart/form-data" method="post" action="{{route('import')}}">
+        {{ csrf_field() }}
 
-    {{--<div class="container text-center">--}}
-    {{--<h2>Import de votre logo !</h2>--}}
-    {{--<input data-preview="#preview" name="input_img" type="file" id="imageInput">--}}
+        <div class="container text-center">
+            <h2>Import de votre logo !</h2>
+            <input data-preview="#preview" name="input_img" type="file" id="imageInput">
 
-    {{--<div class="text-center">--}}
-    {{--<input class="btn btn-lg btn-primary" type="submit">--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</form>--}}
+            <div class="text-center">
+                <input class="btn btn-lg btn-primary" type="submit">
+            </div>
+        </div>
+    </form>
 
 </div>

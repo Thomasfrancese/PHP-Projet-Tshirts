@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Logo extends Model
 {
-    protected $fillable = ['largeur','hauteur'];
+    protected $fillable = ['nom','largeur','hauteur'];
     //
 }

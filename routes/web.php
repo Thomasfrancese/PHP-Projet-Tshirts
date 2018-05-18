@@ -25,4 +25,4 @@ Route::get('/result/{tshirt}/{logo}', 'CreateImageController@index')->name('resu
 
 Route::post('/save/{tshirt}/{logo}', 'CreateImageController@store')->name('save');
 
-//Route::post('/import/{logo}', 'CreateImageController@create')->name('import');
+Route::post('/import', 'CreateImageController@create')->name('import');
