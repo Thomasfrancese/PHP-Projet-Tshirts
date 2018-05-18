@@ -20,6 +20,7 @@ class CreateImageController extends Controller
 
         $pathTshirt = public_path('images/tshirts/' . $tshirt->id . '.png');
         $pathLogo = public_path('images/logo/' . $logo->id . '.png');
+        $pathCopyright = public_path('images/copyright.png');
 
 
         $manager = new ImageManager();
@@ -32,6 +33,8 @@ class CreateImageController extends Controller
 
         });
 
+        $copyright = $manager->make($pathCopyright)->resize(1500,1500);
+
         $width = $imageLogo->width();
         $height = $imageLogo->height();
 
@@ -40,6 +43,8 @@ class CreateImageController extends Controller
 
         //Coller le logo sur le tshirt
         $imageTshirt->insert($imageLogo, 'top-left', $x, $y);
+
+        $imageTshirt->insert($copyright, 'top-left', 650,600);
 
         return $imageTshirt->response();
     }
