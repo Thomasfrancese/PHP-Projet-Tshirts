@@ -7,7 +7,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="container text-center">
+
+<div class="container text-center col-lg-6">
     <h1>Votre t-shirt !</h1>
 
     <img src="{{route('result',[$tshirt, $logo])}}" style="height: 400px; width: 400px"></br>
@@ -18,4 +19,7 @@
     </form>
 
     <a href="{{route('home')}}">Annuler</a>
+</div>
+<div class="container text-center col-lg-6">
+
 </div>

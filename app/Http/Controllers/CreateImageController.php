@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Logo;
 use App\Tshirt;
+//use Faker\Provider\File;
 use Illuminate\Support\Facades\Log;
+use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class CreateImageController extends Controller
 {
@@ -33,7 +36,7 @@ class CreateImageController extends Controller
 
         });
 
-        $copyright = $manager->make($pathCopyright)->resize(1500,1500);
+        $copyright = $manager->make($pathCopyright)->resize(1500, 1500);
 
         $width = $imageLogo->width();
         $height = $imageLogo->height();
@@ -44,7 +47,7 @@ class CreateImageController extends Controller
         //Coller le logo sur le tshirt
         $imageTshirt->insert($imageLogo, 'top-left', $x, $y);
 
-        $imageTshirt->insert($copyright, 'top-left', 650,600);
+        $imageTshirt->insert($copyright, 'top-left', 650, 600);
 
         return $imageTshirt->response();
     }
@@ -110,6 +113,12 @@ class CreateImageController extends Controller
 
         $imageTshirt->save($pathSave);
 
+        if ($logo->nom === 'upload') {
+            $this->destroy($logo);
+            return redirect()->route('home');
+        }
+
+
         return redirect()->route('home');
         //
     }
@@ -154,8 +163,10 @@ class CreateImageController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Logo $logo)
     {
+        File::delete('images/logo/' . $logo->id . '.png');
+        Logo::where('nom', 'upload')->delete();
         //
     }
 }

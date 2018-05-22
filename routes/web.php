@@ -23,6 +23,8 @@ Route::post('/result', 'DisplayImageController@index')->name('display');
 
 Route::get('/result/{tshirt}/{logo}', 'CreateImageController@index')->name('result');
 
+//Route::get('/result/{tshirt}/{logo}', 'CreateImageController@destroy')->name('delete');
+
 Route::post('/save/{tshirt}/{logo}', 'CreateImageController@store')->name('save');
 
 Route::post('/import', 'CreateImageController@create')->name('import');
