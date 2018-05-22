@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Logo;
 use App\Tshirt;
+use App\Creation;
 //use Faker\Provider\File;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
@@ -86,6 +87,15 @@ class CreateImageController extends Controller
      */
     public function store(Tshirt $tshirt, Logo $logo)
     {
+        $data = [
+            'idLogo' =>$logo->id,
+            'idTshirt' =>$tshirt->id,
+            'idUser' => 1,
+
+        ];
+
+       $create = Creation::create($data);
+
         $path = $tshirt->nom . $logo->nom . '_' . time();
 
         $pathTshirt = public_path('images/tshirts/' . $tshirt->id . '.png');
